@@ -1136,3 +1136,275 @@ html {
   font-size: 0.78rem;
   color: var(--mute);
 }
+body {
+  overflow-x: clip;
+}
+.spot {
+  position: relative;
+  z-index: 1;
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: -8rem;
+  bottom: -2rem;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: url("/bg-1.jpg") center / 100% no-repeat;
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent,
+    #000 20%,
+    #000 70%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent,
+    #000 20%,
+    #000 70%,
+    transparent
+  );
+}
+/* Teks lebih kontras */
+.intro-sub {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Semua tombol punya latar krem supaya terbaca di atas foto */
+.act-btn {
+  background: #fbf8f3;
+}
+.act-btn.solid {
+  background: var(--accent);
+}
+
+/* Hubungi Saya jadi tombol outline burgundy */
+.act-btn.plain {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #fbf8f3;
+}
+.act-btn.plain svg {
+  color: currentColor;
+}
+.act-btn.plain:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.about {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.about-photo {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+  aspect-ratio: 4 / 5;
+}
+.about-photo::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 4%;
+  height: 82%;
+  background: var(--accent);
+  border-radius: 58% 42% 55% 45% / 46% 52% 48% 54%;
+  transform: rotate(-6deg);
+}
+.about-photo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 12%;
+  bottom: 0;
+  height: 88%;
+  border: 1.5px solid rgba(121, 13, 22, 0.35);
+  border-radius: 46% 54% 50% 50% / 55% 45% 55% 45%;
+  transform: rotate(5deg);
+}
+.about-photo img {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.about-photo img.clip {
+  width: 82%;
+  height: 88%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 46% 46% 28px 28px;
+}
+
+.chip {
+  position: absolute;
+  z-index: 3;
+  padding: 0.45rem 1.1rem;
+  background: #fbf8f3;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(23, 17, 15, 0.14);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.chip::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.chip.c1 {
+  top: 12%;
+  left: -4%;
+  transform: rotate(-5deg);
+}
+.chip.c2 {
+  bottom: 12%;
+  right: -4%;
+  transform: rotate(4deg);
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  max-width: 52ch;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1.8rem 0;
+}
+.about-stats div {
+  padding: 1rem 1.2rem;
+  background: #fbf8f3;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.about-stats strong {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.about-stats span {
+  color: var(--mute);
+  font-size: 0.85rem;
+}
+.about-info {
+  list-style: none;
+  margin-bottom: 1.8rem;
+}
+.about-info li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+.about-info li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.about-info span {
+  color: var(--mute);
+}
+.about-info b {
+  font-weight: 600;
+  text-align: right;
+}
+
+@media (max-width: 800px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .about-photo {
+    max-width: 340px;
+  }
+}
+/* Klik menu: isi langsung di bawah navbar, tanpa jarak ganda */
+html {
+  scroll-padding-top: 0;
+}
+
+/* About memenuhi satu layar, isinya di tengah */
+#about {
+  min-height: 100svh;
+  padding: 6.5rem 0 3rem;
+  display: flex;
+  align-items: center;
+}
+#about .about {
+  width: 100%;
+}
+
+.about {
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3rem;
+}
+.about-photo {
+  width: min(100%, 440px, 56svh);
+}
+.about-body h2 {
+  margin-bottom: 1.2rem;
+}
+.about-lead {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  max-width: none;
+}
+.about-lead + .about-lead {
+  margin-top: 0.8rem;
+}
+.about-stats {
+  margin: 1.4rem 0;
+}
+.about-stats div {
+  padding: 0.8rem 1rem;
+}
+
+@media (max-width: 800px) {
+  #about {
+    min-height: auto;
+    display: block;
+  }
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+.about-lead {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.about-stats strong {
+  font-size: 1.5rem;
+}
+.about-stats span {
+  font-size: 0.8rem;
+}
+.about-body h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}

@@ -49,6 +49,13 @@ const interests = [
   "AI",
   "Cyber Security",
 ];
+
+const aboutStats = [
+  { n: "5", l: "Proyek" },
+  { n: "3.85", l: "IPK" },
+  { n: "2", l: "Pengalaman kerja" },
+];
+
 export default function Home() {
   return (
     <>
@@ -167,28 +174,51 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="wrap spot">
-          <div>
-            <p className="spot-label">Pengalaman terbaru</p>
-            <h2>Magang Web Developer di Kantor Bupati Bangka.</h2>
-            <p>
-              Membangun sistem manajemen aset berbasis web untuk 12 pengguna,
-              lalu melatih 10 Kepala Bagian menggunakannya.
-            </p>
+        <section id="about" className="wrap section">
+          <div className="about">
+            <div className="about-photo">
+              <img src="/about.png" alt={`Foto ${profile.name}`} />
+              <span className="chip c1">Web Developer</span>
+              <span className="chip c2">UI/UX Designer</span>
+            </div>
+
+            <div className="about-body">
+              <h2>About</h2>
+              <p className="about-lead">
+                Saya merupakan mahasiswa Sarjana Terapan Teknologi Rekayasa
+                Perangkat Lunak di Politeknik Manufaktur Negeri Bangka Belitung
+                yang berfokus pada pengembangan perangkat lunak dan solusi
+                digital. Saya memiliki ketertarikan pada Software Engineering,
+                Full-Stack Development, UI/UX Design, Internet of Things (IoT),
+                Artificial Intelligence (AI), dan Virtual Reality (VR).
+              </p>
+              <p className="about-lead">
+                Saya memiliki pengalaman dalam pengembangan aplikasi web dan
+                sistem informasi di lingkungan pemerintahan, serta pengalaman
+                sebagai teknisi pemasangan Interactive Flat Panel (IFP) di
+                sekolah. Selain itu, saya mengembangkan berbagai proyek akademik
+                yang mencakup aplikasi web dan mobile, API, serta perancangan
+                antarmuka dan prototype UI/UX. Dalam setiap proyek, saya
+                mengutamakan pemecahan masalah, penulisan kode yang terstruktur,
+                dan pengembangan solusi yang berorientasi pada kebutuhan
+                pengguna. Saya juga memiliki kemampuan komunikasi, kerja sama
+                tim, manajemen waktu, adaptabilitas, dan kemauan belajar yang
+                mendukung saya dalam bekerja secara efektif, baik secara mandiri
+                maupun kolaboratif.
+              </p>
+
+              <div className="about-stats">
+                {aboutStats.map((s) => (
+                  <div key={s.l}>
+                    <strong>{s.n}</strong>
+                    <span>{s.l}</span>
+                  </div>
+                ))}
+              </div>
+
+              <CvButton />
+            </div>
           </div>
-          <aside>
-            <p className="spot-big">
-              3.85 <small>IPK</small>
-            </p>
-            <ul>
-              <li>D4 Rekayasa Perangkat Lunak</li>
-              <li>76 Smart TV terpasang di sekolah</li>
-              <li>Finalis Elektro Expo 2024</li>
-            </ul>
-            <a className="btn primary" href="#projects">
-              Lihat proyek
-            </a>
-          </aside>
         </section>
 
         <section id="about" className="wrap section">
