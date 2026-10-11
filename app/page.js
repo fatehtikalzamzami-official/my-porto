@@ -50,10 +50,123 @@ const interests = [
   "Cyber Security",
 ];
 
-const aboutStats = [
-  { n: "5", l: "Proyek" },
-  { n: "3.85", l: "IPK" },
-  { n: "2", l: "Pengalaman kerja" },
+const aboutCards = [
+  {
+    k: "Gelar (S.Tr. Kom.)",
+    v: "Sarjana Terapan (D4)",
+    s: "In progress",
+    icon: (
+      <>
+        <path d="M22 10L12 5 2 10l10 5 10-5z" />
+        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+      </>
+    ),
+  },
+  {
+    k: "Bidang studi",
+    v: "Teknologi Rekayasa Perangkat Lunak",
+    icon: <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />,
+  },
+  {
+    k: "Fokus utama",
+    v: "Software Engineering",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1" />
+      </>
+    ),
+  },
+  {
+    k: "Spesialisasi",
+    v: "Web, Mobile, UI/UX, VR",
+    icon: (
+      <>
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
+        <path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z" />
+      </>
+    ),
+  },
+];
+
+const skillGroups = [
+  {
+    t: "Web & Mobile Development",
+    d: "Membangun aplikasi web dan mobile yang responsif dan mudah dikembangkan.",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
+      </>
+    ),
+    items: [
+      { n: "HTML", i: "html5" },
+      { n: "CSS", i: "css3" },
+      { n: "JavaScript", i: "javascript" },
+      { n: "PHP", i: "php" },
+      { n: "Dart", i: "dart" },
+      { n: "Laravel", i: "laravel" },
+      { n: "Next.js", i: "nextjs" },
+      { n: "React", i: "react" },
+      { n: "Flutter", i: "flutter" },
+      { n: "MySQL", i: "mysql" },
+      { n: "REST API" },
+      { n: "Git", i: "git" },
+      { n: "GitHub", i: "github" },
+    ],
+  },
+  {
+    t: "Game & VR Development",
+    d: "Membuat simulasi dan pengalaman interaktif berbasis Virtual Reality.",
+    icon: <path d="M3 9h18v7a2 2 0 0 1-2 2h-3l-2-3h-4l-2 3H5a2 2 0 0 1-2-2z" />,
+    items: [
+      { n: "Unity", i: "unity" },
+      { n: "C#", i: "csharp" },
+      { n: "C++", i: "cplusplus" },
+      { n: "Blender", i: "blender" },
+      { n: "Virtual Reality" },
+    ],
+  },
+  {
+    t: "UI/UX Design",
+    d: "Merancang antarmuka yang nyaman digunakan, dari wireframe sampai prototype.",
+    icon: (
+      <>
+        <path d="M12 19l7-7 3 3-7 7z" />
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
+        <path d="M2 2l7.6 7.6" />
+        <circle cx="11" cy="11" r="2" />
+      </>
+    ),
+    items: [
+      { n: "Figma", i: "figma" },
+      { n: "Wireframing" },
+      { n: "Prototyping" },
+      { n: "UI Design" },
+      { n: "UX Design" },
+    ],
+  },
+  {
+    t: "Soft Skills",
+    d: "Kemampuan yang mendukung saya bekerja mandiri maupun dalam tim.",
+    icon: (
+      <>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
+      </>
+    ),
+    items: [
+      { n: "Komunikasi" },
+      { n: "Kerja sama tim" },
+      { n: "Kepemimpinan" },
+      { n: "Pemecahan masalah" },
+      { n: "Berpikir analitis" },
+      { n: "Manajemen waktu" },
+      { n: "Adaptasi" },
+    ],
+  },
 ];
 
 export default function Home() {
@@ -79,6 +192,7 @@ export default function Home() {
         </a>
         <nav>
           <a href="#about">About</a>
+          <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
           <a href="#education">Education</a>
@@ -207,11 +321,29 @@ export default function Home() {
                 maupun kolaboratif.
               </p>
 
-              <div className="about-stats">
-                {aboutStats.map((s) => (
-                  <div key={s.l}>
-                    <strong>{s.n}</strong>
-                    <span>{s.l}</span>
+              <div className="about-cards">
+                {aboutCards.map((c) => (
+                  <div className="a-card" key={c.k}>
+                    <span className="a-ico">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        {c.icon}
+                      </svg>
+                    </span>
+                    <div>
+                      <small>{c.k}</small>
+                      <b>{c.v}</b>
+                      {c.s && <em>{c.s}</em>}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -221,19 +353,48 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="wrap section">
-          <h2>About</h2>
-          <p className="about-sum">{profile.summary}</p>
-          <div className="skills">
-            {skills.map((s) => (
-              <div key={s.g}>
-                <h3>{s.g}</h3>
-                <ul className="tags">
-                  {s.i.map((x) => (
-                    <li key={x}>{x}</li>
+        <section id="skills" className="wrap section">
+          <div className="sk-head">
+            <h2>Skills</h2>
+            <p>
+              Teknologi dan kemampuan yang saya gunakan untuk membangun solusi
+              digital.
+            </p>
+          </div>
+          <div className="sk-grid">
+            {skillGroups.map((g, idx) => (
+              <article className="sk-card" key={g.t}>
+                <header>
+                  <span className="a-ico">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      {g.icon}
+                    </svg>
+                  </span>
+                  <h3>{g.t}</h3>
+                  <span className="sk-no">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                </header>
+                <p>{g.d}</p>
+                <ul className="sk-chips">
+                  {g.items.map((x) => (
+                    <li key={x.n}>
+                      {x.i && <img src={di(x.i)} alt="" loading="lazy" />}
+                      {x.n}
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
         </section>
