@@ -8,7 +8,7 @@ import {
   skills,
   education,
 } from "../lib/data";
-
+import TechOrbit from "../components/TechOrbit";
 import CvButton from "../components/CvButton";
 
 const di = (s) =>
@@ -90,16 +90,114 @@ const aboutCards = [
   },
 ];
 
+const Svg = ({ children, size = 14 }) => (
+  <svg
+    className="gi"
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {children}
+  </svg>
+);
+
+const ic = {
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
+    </>
+  ),
+  pen: (
+    <>
+      <path d="M12 19l7-7 3 3-7 7z" />
+      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
+      <path d="M2 2l7.6 7.6" />
+      <circle cx="11" cy="11" r="2" />
+    </>
+  ),
+  api: <path d="M7 7h10l-3-3M17 17H7l3 3" />,
+  vr: <path d="M3 9h18v7a2 2 0 0 1-2 2h-3l-2-3h-4l-2 3H5a2 2 0 0 1-2-2z" />,
+  wire: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9h18M9 9v11" />
+    </>
+  ),
+  proto: <path d="M5 3l14 8-6 2-2 6z" />,
+  ui: (
+    <>
+      <path d="M12 3l9 5-9 5-9-5z" />
+      <path d="M3 13l9 5 9-5" />
+    </>
+  ),
+  ux: (
+    <>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M5 20c0-4 3-6 7-6s7 2 7 6" />
+    </>
+  ),
+  chip: (
+    <>
+      <rect x="6" y="6" width="12" height="12" rx="2" />
+      <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
+    </>
+  ),
+  sensor: (
+    <>
+      <circle cx="12" cy="12" r="2" />
+      <path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19a10 10 0 0 1 0-14" />
+    </>
+  ),
+  embedded: (
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+    </>
+  ),
+  eye: (
+    <>
+      <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </>
+  ),
+  ml: <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />,
+  chat: (
+    <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  ),
+  team: (
+    <>
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
+    </>
+  ),
+  flag: <path d="M5 21V4M5 4h11l-2 4 2 4H5" />,
+  bulb: (
+    <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z" />
+  ),
+  chart: <path d="M4 20V10M10 20V4M16 20v-8M2 20h20" />,
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  ),
+  loop: (
+    <path d="M20 11a8 8 0 0 0-14-4M4 4v4h4M4 13a8 8 0 0 0 14 4M20 20v-4h-4" />
+  ),
+};
+
 const skillGroups = [
   {
-    t: "Web & Mobile Development",
-    d: "Membangun aplikasi web dan mobile yang responsif dan mudah dikembangkan.",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
-      </>
-    ),
+    t: "Web & Mobile",
+    icon: ic.globe,
     items: [
       { n: "HTML", i: "html5" },
       { n: "CSS", i: "css3" },
@@ -111,60 +209,67 @@ const skillGroups = [
       { n: "React", i: "react" },
       { n: "Flutter", i: "flutter" },
       { n: "MySQL", i: "mysql" },
-      { n: "REST API" },
+      { n: "REST API", g: "api" },
       { n: "Git", i: "git" },
       { n: "GitHub", i: "github" },
     ],
   },
   {
-    t: "Game & VR Development",
-    d: "Membuat simulasi dan pengalaman interaktif berbasis Virtual Reality.",
-    icon: <path d="M3 9h18v7a2 2 0 0 1-2 2h-3l-2-3h-4l-2 3H5a2 2 0 0 1-2-2z" />,
+    t: "Game & VR",
+    icon: ic.vr,
     items: [
       { n: "Unity", i: "unity" },
       { n: "C#", i: "csharp" },
       { n: "C++", i: "cplusplus" },
       { n: "Blender", i: "blender" },
-      { n: "Virtual Reality" },
+      { n: "Virtual Reality", g: "vr" },
     ],
   },
   {
     t: "UI/UX Design",
-    d: "Merancang antarmuka yang nyaman digunakan, dari wireframe sampai prototype.",
-    icon: (
-      <>
-        <path d="M12 19l7-7 3 3-7 7z" />
-        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
-        <path d="M2 2l7.6 7.6" />
-        <circle cx="11" cy="11" r="2" />
-      </>
-    ),
+    icon: ic.pen,
     items: [
       { n: "Figma", i: "figma" },
-      { n: "Wireframing" },
-      { n: "Prototyping" },
-      { n: "UI Design" },
-      { n: "UX Design" },
+      { n: "Wireframing", g: "wire" },
+      { n: "Prototyping", g: "proto" },
+      { n: "UI Design", g: "ui" },
+      { n: "UX Design", g: "ux" },
+    ],
+  },
+  {
+    t: "IoT & Embedded",
+    icon: ic.chip,
+    items: [
+      { n: "Arduino", i: "arduino" },
+      { n: "Raspberry Pi", i: "raspberrypi" },
+      { n: "ESP32", g: "chip" },
+      { n: "Sensor", g: "sensor" },
+      { n: "Embedded System", g: "embedded" },
+    ],
+  },
+  {
+    t: "AI & Computer Vision",
+    icon: ic.ml,
+    items: [
+      { n: "Python", i: "python" },
+      { n: "TensorFlow", i: "tensorflow" },
+      { n: "OpenCV", i: "opencv" },
+      { n: "Jupyter", i: "jupyter" },
+      { n: "Computer Vision", g: "eye" },
+      { n: "Machine Learning", g: "ml" },
     ],
   },
   {
     t: "Soft Skills",
-    d: "Kemampuan yang mendukung saya bekerja mandiri maupun dalam tim.",
-    icon: (
-      <>
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
-      </>
-    ),
+    icon: ic.team,
     items: [
-      { n: "Komunikasi" },
-      { n: "Kerja sama tim" },
-      { n: "Kepemimpinan" },
-      { n: "Pemecahan masalah" },
-      { n: "Berpikir analitis" },
-      { n: "Manajemen waktu" },
-      { n: "Adaptasi" },
+      { n: "Komunikasi", g: "chat" },
+      { n: "Kerja sama tim", g: "team" },
+      { n: "Kepemimpinan", g: "flag" },
+      { n: "Pemecahan masalah", g: "bulb" },
+      { n: "Berpikir analitis", g: "chart" },
+      { n: "Manajemen waktu", g: "clock" },
+      { n: "Adaptasi", g: "loop" },
     ],
   },
 ];
@@ -354,48 +459,36 @@ export default function Home() {
         </section>
 
         <section id="skills" className="wrap section">
-          <div className="sk-head">
+          <div className="sx-head">
             <h2>Skills</h2>
-            <p>
-              Teknologi dan kemampuan yang saya gunakan untuk membangun solusi
-              digital.
-            </p>
           </div>
-          <div className="sk-grid">
-            {skillGroups.map((g, idx) => (
-              <article className="sk-card" key={g.t}>
-                <header>
-                  <span className="a-ico">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      {g.icon}
-                    </svg>
-                  </span>
-                  <h3>{g.t}</h3>
-                  <span className="sk-no">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                </header>
-                <p>{g.d}</p>
-                <ul className="sk-chips">
-                  {g.items.map((x) => (
-                    <li key={x.n}>
-                      {x.i && <img src={di(x.i)} alt="" loading="lazy" />}
-                      {x.n}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+
+          <div className="sx-layout">
+            <div className="sx-list">
+              {skillGroups.map((g) => (
+                <div className="sx-row" key={g.t}>
+                  <div className="sx-title">
+                    <span className="a-ico">
+                      <Svg size={20}>{g.icon}</Svg>
+                    </span>
+                    <h3>{g.t}</h3>
+                  </div>
+                  <ul className="sx-chips">
+                    {g.items.map((x) => (
+                      <li key={x.n}>
+                        {x.i ? (
+                          <img src={di(x.i)} alt="" loading="lazy" />
+                        ) : (
+                          <Svg>{ic[x.g]}</Svg>
+                        )}
+                        {x.n}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <TechOrbit />
           </div>
         </section>
 
