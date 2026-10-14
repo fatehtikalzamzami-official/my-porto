@@ -50,6 +50,16 @@ const interests = [
   "Cyber Security",
 ];
 
+const softSkills = [
+  { n: "Komunikasi", g: "chat" },
+  { n: "Kerja sama tim", g: "team" },
+  { n: "Kepemimpinan", g: "flag" },
+  { n: "Pemecahan masalah", g: "bulb" },
+  { n: "Berpikir analitis", g: "chart" },
+  { n: "Manajemen waktu", g: "clock" },
+  { n: "Adaptasi", g: "loop" },
+];
+
 const aboutCards = [
   {
     k: "Gelar (S.Tr. Kom.)",
@@ -122,6 +132,14 @@ const ic = {
       <circle cx="11" cy="11" r="2" />
     </>
   ),
+
+  db: (
+    <>
+      <ellipse cx="12" cy="5" rx="8" ry="3" />
+      <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+    </>
+  ),
+
   api: <path d="M7 7h10l-3-3M17 17H7l3 3" />,
   vr: <path d="M3 9h18v7a2 2 0 0 1-2 2h-3l-2-3h-4l-2 3H5a2 2 0 0 1-2-2z" />,
   wire: (
@@ -201,17 +219,19 @@ const skillGroups = [
     items: [
       { n: "HTML", i: "html5" },
       { n: "CSS", i: "css3" },
+      { n: "Tailwind CSS", i: "tailwindcss" },
       { n: "JavaScript", i: "javascript" },
       { n: "PHP", i: "php" },
       { n: "Dart", i: "dart" },
+      { n: "Kotlin", i: "kotlin" },
       { n: "Laravel", i: "laravel" },
       { n: "Next.js", i: "nextjs" },
       { n: "React", i: "react" },
+      { n: "Node.js", i: "nodejs" },
       { n: "Flutter", i: "flutter" },
-      { n: "MySQL", i: "mysql" },
+      { n: "Firebase", i: "firebase" },
       { n: "REST API", g: "api" },
-      { n: "Git", i: "git" },
-      { n: "GitHub", i: "github" },
+      { n: "Postman", i: "postman" },
     ],
   },
   {
@@ -223,6 +243,23 @@ const skillGroups = [
       { n: "C++", i: "cplusplus" },
       { n: "Blender", i: "blender" },
       { n: "Virtual Reality", g: "vr" },
+      { n: "Meta Quest", g: "vr" },
+    ],
+  },
+
+  {
+    t: "Database & Tools",
+    icon: ic.db,
+    items: [
+      { n: "MySQL", i: "mysql" },
+      { n: "MariaDB", i: "mariadb" },
+      { n: "PostgreSQL", i: "postgresql" },
+      { n: "SQLite", i: "sqlite" },
+      { n: "MongoDB", i: "mongodb" },
+      { n: "Git", i: "git" },
+      { n: "GitHub", i: "github" },
+      { n: "GitLab", i: "gitlab" },
+      { n: "VS Code", i: "vscode" },
     ],
   },
   {
@@ -259,19 +296,6 @@ const skillGroups = [
       { n: "Machine Learning", g: "ml" },
     ],
   },
-  {
-    t: "Soft Skills",
-    icon: ic.team,
-    items: [
-      { n: "Komunikasi", g: "chat" },
-      { n: "Kerja sama tim", g: "team" },
-      { n: "Kepemimpinan", g: "flag" },
-      { n: "Pemecahan masalah", g: "bulb" },
-      { n: "Berpikir analitis", g: "chart" },
-      { n: "Manajemen waktu", g: "clock" },
-      { n: "Adaptasi", g: "loop" },
-    ],
-  },
 ];
 
 export default function Home() {
@@ -297,7 +321,7 @@ export default function Home() {
         </a>
         <nav>
           <a href="#about">About</a>
-          <a href="#skills">Skills</a>
+          <a href="#skills">Tech Stack</a>
           <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
           <a href="#education">Education</a>
@@ -308,7 +332,7 @@ export default function Home() {
         </a>
       </header>
 
-      <main id="top">
+      <main>
         <section className="intro">
           <figure className="polaroid left">
             <img src="/profil_diri.jpeg" alt={`Foto ${profile.name}`} />
@@ -402,7 +426,7 @@ export default function Home() {
             </div>
 
             <div className="about-body">
-              <h2>About</h2>
+              <h2>About Me - Fateh Tikal Zamzami</h2>
               <p className="about-lead">
                 Saya merupakan mahasiswa Sarjana Terapan Teknologi Rekayasa
                 Perangkat Lunak di Politeknik Manufaktur Negeri Bangka Belitung
@@ -426,6 +450,17 @@ export default function Home() {
                 maupun kolaboratif.
               </p>
 
+              <div className="soft">
+                <h3>Soft Skills</h3>
+                <ul className="sx-chips">
+                  {softSkills.map((x) => (
+                    <li key={x.n}>
+                      <Svg>{ic[x.g]}</Svg>
+                      {x.n}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className="about-cards">
                 {aboutCards.map((c) => (
                   <div className="a-card" key={c.k}>
@@ -460,7 +495,7 @@ export default function Home() {
 
         <section id="skills" className="wrap section">
           <div className="sx-head">
-            <h2>Skills</h2>
+            <h2>Tech Stack</h2>
           </div>
 
           <div className="sx-layout">

@@ -5,33 +5,35 @@ const di = (s) =>
   `https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/${s}/${s}-original.svg`;
 
 const icons = [
-  ["HTML", "html5"],
-  ["CSS", "css3"],
-  ["JavaScript", "javascript"],
-  ["TypeScript", "typescript"],
-  ["PHP", "php"],
-  ["Python", "python"],
-  ["Dart", "dart"],
-  ["C#", "csharp"],
-  ["C++", "cplusplus"],
   ["Next.js", "nextjs"],
   ["React", "react"],
+  ["TypeScript", "typescript"],
+  ["JavaScript", "javascript"],
+  ["Tailwind CSS", "tailwindcss"],
   ["Node.js", "nodejs"],
+  ["PHP", "php"],
   ["Laravel", "laravel"],
   ["Flutter", "flutter"],
-  ["Tailwind CSS", "tailwindcss"],
-  ["Bootstrap", "bootstrap"],
-  ["Unity", "unity"],
-  ["Blender", "blender"],
+  ["Kotlin", "kotlin"],
+  ["Firebase", "firebase"],
+  ["Postman", "postman"],
   ["MySQL", "mysql"],
-  ["Git", "git"],
-  ["GitHub", "github"],
+  ["PostgreSQL", "postgresql"],
+  ["MongoDB", "mongodb"],
+  ["SQLite", "sqlite"],
+  ["GitLab", "gitlab"],
+  ["VS Code", "vscode"],
+  ["Python", "python"],
+  ["NumPy", "numpy"],
+  ["Pandas", "pandas"],
+  ["TensorFlow", "tensorflow"],
+  ["OpenCV", "opencv"],
+  ["Unity", "unity"],
+  ["C#", "csharp"],
+  ["Blender", "blender"],
   ["Figma", "figma"],
   ["Arduino", "arduino"],
   ["Raspberry Pi", "raspberrypi"],
-  ["TensorFlow", "tensorflow"],
-  ["OpenCV", "opencv"],
-  ["Jupyter", "jupyter"],
 ];
 
 // Sebar titik merata di permukaan bola (Fibonacci sphere)
@@ -43,10 +45,10 @@ const pts = icons.map(([n, s], i) => {
   return { n, s, x: r * Math.cos(th), y, z: r * Math.sin(th) };
 });
 
-const D = 4; // perspektif kamera
-const R = 32; // sebelumnya 30
+const D = 6;
+const R = 34;
+const TILE = 12; // sebelumnya 8
 const AUTO = 0.35; // kecepatan putar otomatis (rad/detik)
-const TILE = 9; // ukuran tile (% dari stage)
 
 export default function TechOrbit() {
   const root = useRef(null);
@@ -82,13 +84,14 @@ export default function TechOrbit() {
         const y2 = p.y * cp + z1 * sp;
         const z2 = -p.y * sp + z1 * cp;
         const f = D / (D - z2);
+        const depth = (z2 + 1) / 2;
         const node = tiles.current[i];
         if (!node) return;
         node.style.left = `${(50 + x1 * f * R).toFixed(2)}%`;
         node.style.top = `${(50 + y2 * f * R).toFixed(2)}%`;
-        node.style.transform = `translate(-50%, -50%) scale(${f.toFixed(3)})`;
-        node.style.opacity = (0.3 + 0.7 * ((z2 + 1) / 2)).toFixed(2);
-        node.style.zIndex = 10 + Math.round((z2 + 1) * 50);
+        node.style.transform = `translate(-50%, -50%) scale(${(0.85 + 0.3 * depth).toFixed(3)})`;
+        node.style.opacity = (0.8 + 0.2 * depth).toFixed(2);
+        node.style.zIndex = 10 + Math.round(depth * 100);
       });
     };
 
